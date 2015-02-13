@@ -50,14 +50,15 @@ public class MainTest {
 						notes.add(Integer.parseInt(codes_MIDI[i]));
 					}
 				}
-				//System.out.println(ChordsFinder.ListOfNotes(notes));
+				System.out.println(ChordsFinder.ListOfNotes(notes));
 				if (notes.isEmpty()){
 					System.err.println("Input file empty.");
 					return;
 				}
 				System.out.println("startTime");
 				long startTime = System.nanoTime();
-				System.out.println(ChordsFinder2.processDnC(notes));
+//				System.out.println(ChordsFinder2.processDnC(notes));
+				ChordsFinder.naif((ArrayList<Integer>) notes);
 				   // ... the code being measured ...
 				long estimatedTime = System.nanoTime() - startTime;
 				System.out.println("estimatedTime = " + estimatedTime);
