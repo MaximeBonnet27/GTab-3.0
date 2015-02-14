@@ -40,11 +40,23 @@ public class Accord {
 		if (tierce == null) {
 			return Note.MIDIVersNotation(tonique.getHauteur()) + "5";
 		} else {
-			if (tonique.ecart(tierce) == 3) {
-				return Note.MIDIVersNotation(tonique.getHauteur()) + "m";
+			if (tonique != null){
+				if( tonique.ecart(tierce) == 3) {
+					return Note.MIDIVersNotation(tonique.getHauteur()) + "m";
+				}
+				else {
+					return Note.MIDIVersNotation(tonique.getHauteur()) + "M";
+				}
 			} else {
-				return Note.MIDIVersNotation(tonique.getHauteur()) + "M";
+				if(tierce.ecart(quinte) == 3){
+					return Note.MIDIVersNotation(tierce.getHauteur()) + "m";
+				}
+				else{
+					return Note.MIDIVersNotation(tierce.getHauteur()) + "M";
+
+				}
 			}
+
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Test {
 
@@ -60,11 +61,30 @@ public class Test {
 		}
 		return notes;
 	}
+	
+	public static ArrayList<Note> genererListeAleatoire(int taille){
+		ArrayList<Note> res = new ArrayList<Note>();
+		Random rand = new Random();
+		for(int i = 0; i < taille; ++i){
+			res.add(new Note(rand.nextInt(12)));
+		}
+		return res;
+	}
 
 	public static void main(String[] args) {
-		ArrayList<Note> notes = fichierNotationVersListeNotes("toto.txt");
+		ArrayList<Note> notes = null;
+//		notes = fichierNotationVersListeNotes("toto.txt");
+		notes =genererListeAleatoire(100000);
 		Algorithm algo = new Algorithm();
-		System.out.println(algo.compute(notes));
+		long time = System.currentTimeMillis();
+		ArrayList<Accord> accords = algo.compute(notes);
+		time = System.currentTimeMillis() - time;
+
+		System.out.println(accords.size() + " accords trouvés en " + time +" ms");
+		for (Accord accord : accords) {
+			if(accord != null)
+			System.out.println(accord);
+		}
 	}
 
 }

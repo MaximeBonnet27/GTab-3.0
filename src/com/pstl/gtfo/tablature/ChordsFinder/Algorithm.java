@@ -26,7 +26,6 @@ public class Algorithm {
 			/* On récupère la deuxième note et on calcule l'écart avec la première*/
 			noteB = notes.get(i);
 			ecart = noteA.ecart(noteB);
-			System.out.println("Itération " + i + " : " + noteA + " | " + noteB + " -> " + ecart);
 			if(ecart == 0) {
 				/* Passage a la prochaine note */
 				noteA = noteB;
@@ -102,7 +101,7 @@ public class Algorithm {
 			possibilites[1] = new Accord(noteB, noteA, null);
 			break;
 		default :
-			System.err.println("Ecart ne devrait pas etre permis : "+ ecart);
+			//System.err.println("Ecart ne devrait pas etre permis : "+ ecart);
 		}
 	}
 
