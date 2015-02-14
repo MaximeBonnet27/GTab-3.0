@@ -53,6 +53,7 @@ public class IHMActivity extends Activity {
 		text.setSingleLine(true);
 		text.setEnabled(true);
 
+
 	}
 
 	@Override
