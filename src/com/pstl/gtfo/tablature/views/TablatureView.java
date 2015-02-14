@@ -48,11 +48,13 @@ public class TablatureView extends View
 	
 	public TablatureView(Context context) {
 		super(context);
+        this.setWillNotDraw(false);
 		initCanvas();
 		tablature = new Tablature();
 		initParams();
 		setOnClickListener();
 		notePlayer = new NotePlayer();
+
 	}
 	
 	private void initParams(){
@@ -61,7 +63,7 @@ public class TablatureView extends View
 	}
 	
 	private void initWidth(){
-		this.width = x0 + dCase * tablature.getNbPos(); 
+		this.width = x0 + dCase * tablature.getNbPos();
 	}
 	
 	public void setHeight(int h){
@@ -77,6 +79,7 @@ public class TablatureView extends View
 		caseNumPaint = new TextPaint();
 		caseNumPaint.setTextSize(30);
 		caseNumPaint.setColor(Color.BLACK);
+
 	}
 	
 	public void setGenerator(ITablatureGenerator gen){
@@ -87,7 +90,9 @@ public class TablatureView extends View
 	public void updateTablature(Tablature tablature) {
 		this.tablature = tablature;
 		initParams();
+        this.setWillNotDraw(false);
 		this.invalidate();
+
 	}
 	
 	
@@ -112,6 +117,7 @@ public class TablatureView extends View
 			NoteLoader n = generator.getNoteLoader();
 			List<String> chords = new ArrayList<String>();
 			chords = n.getChords();
+
 			List<Integer> lengths = new ArrayList<Integer>();
 			lengths = n.getLengths();
 			//System.out.println("lengths in TablatureView: " + lengths);

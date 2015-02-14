@@ -148,11 +148,14 @@ public class TablatureGenerator implements ITablatureGenerator {
 		LPosition liste = new LPosition();
 		switch (note.length()) {
 		case 1: case 2:{
+           //ICI LA LISTE EST NULLE, note = 60
+                System.err.println(note);
 			liste = notesPos.get(note);
 			if(liste == null) liste = new LPosition();
 			break;
 		}
 		case 3:{
+
 			LPosition ltemp = notesPos.get(""+note.charAt(0)+note.charAt(2));
 			if(ltemp!=null){
 				try{

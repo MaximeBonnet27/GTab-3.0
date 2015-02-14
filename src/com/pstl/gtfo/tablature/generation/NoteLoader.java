@@ -84,6 +84,8 @@ public class NoteLoader {
 				double dur;
 				strLine.replace(',' ,'.');
 				tab=strLine.split("/");
+                System.out.println(tab.length);
+
 				if(tab[0]!=null &&tab[1]!=null && tab[2]!=null){
 					System.out.println("fichier " + name + "StrLine premier if");
 					try{
@@ -96,7 +98,7 @@ public class NoteLoader {
 						
 						/********PROBLEME AVEC LA PREMIERE NOTE: ELLE N'EST PAS VALABLE********/
 						if(note!=null && noteValide(note)){//&& noteValide(note) ??
-							System.out.println("fichier " + name + "StrLine deuxième if");
+							System.out.println("fichier " + name + "StrLine deuxiÔøΩme if");
 							Log.e("parserFichier note : ", note+" "+deb+" "+dur);
 							this.addNote(note,deb,dur);
 							String namenote = note.substring(0,note.length()-1);
@@ -106,6 +108,13 @@ public class NoteLoader {
 							System.out.println("codes = " + codes);
 							//codes.add(Integer.valueOf(1));
 						}
+                        this.addNote(note,deb,dur);
+                        String namenote = note.substring(0,note.length()-1);
+                        System.out.println("namenote = " + namenote);
+                        //Log.i(LOG_TAG,"notenumber: " + ChordsFinder2.nameToCode(namenote));
+                        codes.add(ChordsFinder2.nameToCode(namenote));
+                        System.out.println("codes = " + codes);
+                        //codes.add(Integer.valueOf(1));
 					}
 					catch (NumberFormatException e) {
 						nbErreur++;
@@ -113,7 +122,7 @@ public class NoteLoader {
 				}
 			}
 			buf.close();
-			System.out.println("après boucle: ");
+			System.out.println("aprÔøΩs boucle: ");
 			List<List<Integer>> tmp = new ArrayList<List<Integer>>();
 			tmp = ChordsFinder2.processDnC(codes);
 			System.out.println("list of lists: " + tmp);
@@ -127,9 +136,9 @@ public class NoteLoader {
 			System.out.println("lenghts: " + lengths);
 		}
 		
-		catch(FileNotFoundException e){}
-		catch (IOException io){}
-		catch (ArrayIndexOutOfBoundsException io){}
+		catch(FileNotFoundException e){System.err.println("bug 1");}
+		catch (IOException io){System.err.println("bug 2");}
+		catch (ArrayIndexOutOfBoundsException io){System.err.println("bug 3");}
 		Log.e("parserFichier nb erreurs : ", ""+nbErreur);
 		/*notes = new ArrayList<Note>();
 		for(int i=0; i<100; i++)
