@@ -39,14 +39,16 @@ public class Note {
 	
 	/**
 	 * Note en notation anglaise -> MIDI
+	 * Note de la forme A4, C#3 etc.
 	 * @param notation
 	 * @return La note correspondante écrite en notation anglaise
 	 */
 	
 	public static int notationVersMIDI(String notation){
+		System.out.println("NOTE : " + notation.substring(0, notation.length() - 1));
 		for(int i = 0; i < 12; ++i){
-			if(notationAnglaise[i].equals(notation)){
-				return i;
+			if(notationAnglaise[i].equals(notation.substring(0, notation.length() - 1))){
+				return i + 12 * (notation.charAt(notation.length()-1));
 			}
 		}
 		System.err.println("notationVersMIDI -> note inconnue");
