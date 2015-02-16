@@ -83,7 +83,9 @@ public class TablatureGenerator implements ITablatureGenerator {
 
 	@Override
 	public void optDistConvert() {
+		System.out.println("TabGen -> optDistConvert");
 		if(noteLoader.size()>0){
+			System.out.println("optDistConvert size = " + noteLoader.size());
 			Tablature t = new Tablature();
 			int min, max;
 			t.addPos(randPos(noteLoader.getNote(0).getValue()));
@@ -183,6 +185,7 @@ public class TablatureGenerator implements ITablatureGenerator {
 		default:
 			break;
 		}
+		System.out.println("TabGenerator -> getLPosition : liste[0] = " + liste.getPos(0).getNumCase() + " " + liste.getPos(0).getNumCorde());
 		return liste;
 	}
 	

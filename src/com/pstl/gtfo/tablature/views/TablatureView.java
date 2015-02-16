@@ -22,8 +22,8 @@ import com.pstl.gtfo.tablature.tablature.Tablature;
 import com.pstl.gtfo.tablature.tablaturePlay.NotePlayer;
 
 public class TablatureView extends View 
-	implements ITablatureView {
-	
+implements ITablatureView {
+
 	NotePlayer notePlayer;
 	ITablatureGenerator generator;
 	Tablature tablature; //Tablature de la vue
@@ -34,7 +34,7 @@ public class TablatureView extends View
 	private int margeBas = 30;
 	private int margeWidth = 100;
 	private int currentNumNote;
-	
+
 	//canvas
 	private Paint cordePaint;
 	private Paint readerPaint;
@@ -42,13 +42,13 @@ public class TablatureView extends View
 	private TextPaint caseNumPaint;
 	private int width;
 	private int height;
-	
-	
-	
-	
+
+
+
+
 	public TablatureView(Context context) {
 		super(context);
-        this.setWillNotDraw(false);
+		this.setWillNotDraw(false);
 		initCanvas();
 		tablature = new Tablature();
 		initParams();
@@ -56,21 +56,21 @@ public class TablatureView extends View
 		notePlayer = new NotePlayer();
 
 	}
-	
+
 	private void initParams(){
 		currentNumNote = 0;
 		initWidth();
 	}
-	
+
 	private void initWidth(){
 		this.width = x0 + dCase * tablature.getNbPos();
 	}
-	
+
 	public void setHeight(int h){
 		this.height = h;
 		this.invalidate();
 	}
-	
+
 	private void initCanvas(){
 		cordePaint = new Paint();
 		readerPaint = new Paint();
@@ -81,24 +81,28 @@ public class TablatureView extends View
 		caseNumPaint.setColor(Color.BLACK);
 
 	}
-	
+
 	public void setGenerator(ITablatureGenerator gen){
 		this.generator = gen;
 	}
 
 	@Override
 	public void updateTablature(Tablature tablature) {
+		System.out.println("TablatureView.updateTablature()");
 		this.tablature = tablature;
+		System.out.println("NbPos de la tab : " + tablature.getNbPos());
 		initParams();
-        this.setWillNotDraw(false);
+		this.setWillNotDraw(false);
 		this.invalidate();
-
+		System.out.println("TablatureView.updateTablature() : après invalidate");
 	}
-	
-	
-	
+
+
+
 	@Override
 	protected void onDraw(Canvas canvas){
+
+		System.out.println("TablatureView.onDraw()");		
 		if(tablature != null && tablature.getNbPos() > 0){
 			dCorde = (height - y0 - margeBas)/(Position.MAXCORDE - 1);
 			//dessin de la barre support des cordes
@@ -109,11 +113,11 @@ public class TablatureView extends View
 				yi = y0 + i * dCorde;
 				canvas.drawLine(x0, yi, width+30, yi, cordePaint);
 			}
-			
+
 			/*AFFICHAGE DES ACCORDS
 			 * 
 			 **/
-			
+
 			NoteLoader n = generator.getNoteLoader();
 			List<String> chords = new ArrayList<String>();
 			chords = n.getChords();
@@ -130,11 +134,11 @@ public class TablatureView extends View
 				xCour = xCour + lengths.get(i)*dCase;
 				System.out.println("xCour = " + xCour);
 			}
-			
+
 			/*
 			 * 
 			 * */
-			
+
 			//dessin des positions (numero des cases)
 			int x=x0,y;
 			Position p ;
@@ -151,7 +155,7 @@ public class TablatureView extends View
 					y = y0 + dCorde * (p.getNumCorde() - 1);
 					canvas.drawText(""+p.getNumCase(), x, y+8, caseNumPaint);
 				}
-				
+
 			}
 			//dessin de la barre de lecture
 			int xL = x0+currentNumNote*dCase;
@@ -160,12 +164,12 @@ public class TablatureView extends View
 			//if(currentNumNote == 0) this.setScrollX(0);
 			//else this.setScrollX(xL-x0);
 		}
-		
+
 	}
-	
+
 	private void setOnClickListener() {
 		this.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				currentNumNote = (currentNumNote + 1 ) % (tablature.getNbPos() + 1);
@@ -179,40 +183,41 @@ public class TablatureView extends View
 				}
 			}
 		});
-		
+
 	}
-	
+
 	@Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(measureWidth(widthMeasureSpec),
-                measureHeight(heightMeasureSpec));
-    }
-	
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		System.out.println("TablatureView.onMeasure()"+ widthMeasureSpec + " | " + heightMeasureSpec);
+		setMeasuredDimension(measureWidth(widthMeasureSpec),
+				measureHeight(heightMeasureSpec));
+	}
+
 	private int measureWidth(int measureSpec) {
-        int result = 0;
-        measureSpec = width + margeWidth;  
-        int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
+		int result = 0;
+		measureSpec = width + margeWidth;  
+		int specMode = MeasureSpec.getMode(measureSpec);
+		int specSize = MeasureSpec.getSize(measureSpec);
 
-        if (specMode == MeasureSpec.UNSPECIFIED) {
-            result = specSize;
-        }
-        return result;
-    }
+		if (specMode == MeasureSpec.UNSPECIFIED) {
+			result = specSize;
+		}
+		return result;
+	}
 
-    
-   private int measureHeight(int measureSpec) {
-        int result = 0;
-        measureSpec = height;
-        int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
-        if (specMode == MeasureSpec.UNSPECIFIED) {
-            result = specSize;
-        } 
-        return result;
-    }
-	
-	
-	
+
+	private int measureHeight(int measureSpec) {
+		int result = 0;
+		measureSpec = height;
+		int specMode = MeasureSpec.getMode(measureSpec);
+		int specSize = MeasureSpec.getSize(measureSpec);
+		if (specMode == MeasureSpec.UNSPECIFIED) {
+			result = specSize;
+		} 
+		return result;
+	}
+
+
+
 
 }
