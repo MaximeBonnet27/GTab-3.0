@@ -19,6 +19,8 @@
     <string name="goButton">GO</string>
     <string name="methGenPrompt">Méthode de génération</string>
     <string name="listNotes">Fichier à tablaturer</string>
+    <string name="mainButton">Tabs</string>
+    <string name="textViewHint">Tabs</string>
     <!--   menu déroulant du mode de génération 
      <string-array name="mgArray">
         <item name="mgArrayAcceuil">mode de génération</item>

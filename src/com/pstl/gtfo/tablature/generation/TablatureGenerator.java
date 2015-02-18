@@ -11,6 +11,7 @@ import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
 import com.pstl.gtfo.tablature.interfaces.ITablatureView;
 import com.pstl.gtfo.tablature.tablature.Position;
 import com.pstl.gtfo.tablature.tablature.Tablature;
+import com.pstl.gtfo.tablature.views.TabView;
 import com.pstl.gtfo.tablature.views.TablatureView;
 
 public class TablatureGenerator implements ITablatureGenerator {
@@ -25,7 +26,7 @@ public class TablatureGenerator implements ITablatureGenerator {
 	
 	public TablatureGenerator(File pathFile, ITablatureView tabView){
 		tablatureView = tabView;
-		((TablatureView) tabView).setGenerator(this);
+		((TabView) tabView).setGenerator(this);
 		init();
 		noteLoader = new NoteLoader();
 		setDirFile(pathFile);

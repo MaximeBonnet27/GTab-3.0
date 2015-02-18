@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pstl.gtfo.tablature.activities.MainActivity"
+        <activity android:name="com.pstl.gtfo.tablature.activities.TabActivity"
             android:label="@string/title_tablature"/>
         
     </application>

@@ -53,10 +53,7 @@ public class MainActivity extends Activity {
 	private  String dir;
 	private File dirFile;
 	private static final String LOG_TAG = "MainActivity: ";
-	
-	
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.pstl.gtfo.sound.*;
 import com.pstl.gtfo.sound.Process;
 import com.pstl.gtfo.tablature.activities.MainActivity;
+import com.pstl.gtfo.tablature.activities.TabActivity;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -229,7 +230,8 @@ public class IHMActivity extends Activity {
 	}
 
 	public void onTablature(View v) {
-		 Intent intent = new Intent(IHMActivity.this,MainActivity.class);
+        Intent intent = new Intent(IHMActivity.this, TabActivity.class);
+		 //Intent intent = new Intent(IHMActivity.this,MainActivity.class);
 		 startActivity(intent);
 	}
 
