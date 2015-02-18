@@ -7,7 +7,9 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -34,6 +36,7 @@ public class TabActivity extends Activity {
     private File dirFile;
     private boolean isInit = false;
     private boolean canGo = false;
+    private Button go;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,12 @@ public class TabActivity extends Activity {
         tabSpin = (Spinner) findViewById(R.id.tabSpinner);
         tabView = (TabView)findViewById(R.id.custom_view);
         tabGen = new TablatureGenerator(dirFile, tabView);
+
         setTabSpinItem();
         setTabOSL();
+        tabView.setWillNotDraw(false);
     }
+
 
     private ArrayList<String> getNotesFilesNames(){
         ArrayList<String> list = new ArrayList<String>();
@@ -66,6 +72,7 @@ public class TabActivity extends Activity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tabSpin.setAdapter(dataAdapter);
     }
+
 
     private void setTabOSL(){
         tabSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -91,9 +98,7 @@ public class TabActivity extends Activity {
                         if(!canGo) canGo = true;
                         tabName = String.valueOf(parent.getItemAtPosition(pos));
                         ((TablatureGenerator) tabGen).setNotesName(tabName);
-                        //new try
-                        optNBGen();//hideBElts();
-                        //mgSpin.setVisibility(View.VISIBLE);
+                        optNBGen();
                         tabView.invalidate();
                         break;
                     }
