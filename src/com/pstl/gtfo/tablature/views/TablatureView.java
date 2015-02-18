@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
@@ -56,6 +57,16 @@ implements ITablatureView {
 		notePlayer = new NotePlayer();
 
 	}
+
+    public TablatureView(Context context, AttributeSet attrs){
+        super(context,attrs);
+        this.setWillNotDraw(false);
+        initCanvas();
+        tablature = new Tablature();
+        initParams();
+        setOnClickListener();
+        notePlayer = new NotePlayer();
+    }
 
 	private void initParams(){
 		currentNumNote = 0;
@@ -163,6 +174,7 @@ implements ITablatureView {
 			canvas.drawLine(xL, y0, xL, yL, readerPaint);
 			//if(currentNumNote == 0) this.setScrollX(0);
 			//else this.setScrollX(xL-x0);
+            super.onDraw(canvas);
 		}
 
 	}

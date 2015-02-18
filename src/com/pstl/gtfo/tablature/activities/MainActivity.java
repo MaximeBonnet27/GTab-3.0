@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 	private boolean isInit = false;
 	private boolean canGo = false;
 	ITablatureGenerator tabGen;
-	private ITablatureView tabView;
+	private TablatureView tabView;
 	private String tabName;
 	private  String dir;
 	private File dirFile;
@@ -62,6 +62,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tablature);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
 		init();
 	}
 	
@@ -73,8 +74,8 @@ public class MainActivity extends Activity {
 		//mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 		//borneLayout = (LinearLayout) findViewById(R.id.borneLayout);
 		scrl = (HorizontalScrollView) findViewById(R.id.scrl);
-		containerLayout = (LinearLayout) findViewById(R.id.scrLayout);
-		containerLayout.setBackgroundResource(R.drawable.theme_wood);
+		//containerLayout = (LinearLayout) findViewById(R.id.scrLayout);
+		//containerLayout.setBackgroundResource(R.drawable.theme_wood);
 		tabSpin = (Spinner) findViewById(R.id.tabSpinner);
 		minSpin = (Spinner) findViewById(R.id.minSpinner);
 		minSpin.setVisibility(View.INVISIBLE);
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
 		//mgSpin = (Spinner) findViewById(R.id.mgSpinner);
 		//mgSpin.setVisibility(View.INVISIBLE);
 		bButton = (Button) findViewById(R.id.borneButton);
-		bButton.setVisibility(View.INVISIBLE);
+		//bButton.setVisibility(View.INVISIBLE);
 		borneTV = (TextView) findViewById(R.id.bornetv);
 		borneTV.setVisibility(View.INVISIBLE);
 		setTabSpinItem();
@@ -92,13 +93,15 @@ public class MainActivity extends Activity {
 		setminOSL();
 		setmaxOSL();
 		setbButtonListener();
-		
-		tabView = new TablatureView(this);
+		tabView = (TablatureView)findViewById(R.id.custom_view);
+        tabView.invalidate();
+        tabView.requestLayout();
+		//tabView = new TablatureView(this);
 		tabGen = new TablatureGenerator(dirFile, tabView);
 		
-		containerLayout.addView((TablatureView)tabView, 
+		/*containerLayout.addView((TablatureView)tabView,
 	    		new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-	    		LinearLayout.LayoutParams.MATCH_PARENT, (float)1.0));
+	    		LinearLayout.LayoutParams.MATCH_PARENT, (float)1.0));*/
 		
 	}
 	
@@ -148,8 +151,9 @@ public class MainActivity extends Activity {
 					tabName = String.valueOf(parent.getItemAtPosition(pos));
 					((TablatureGenerator) tabGen).setNotesName(tabName);
 					//new try
-					optNBGen();hideBElts();
+					optNBGen();//hideBElts();
 					//mgSpin.setVisibility(View.VISIBLE);
+                    tabView.invalidate();
 					break;
 				}
 				}
@@ -170,7 +174,7 @@ public class MainActivity extends Activity {
 						int pos, long id) {
 				 	int start = Integer.valueOf(
 				 			String.valueOf(parent.getItemAtPosition(pos)));	
-				 	setmaxSpinItems(start);	
+				 	setmaxSpinItems(start);
 				}
 
 				@Override
@@ -181,6 +185,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void setmaxOSL() {
+
 		
 	}
 
@@ -252,6 +257,7 @@ public class MainActivity extends Activity {
 	
 	private void optNBGen(){
 		tabGen.optDistConvert();
+        tabView.invalidate();
 	}
 
 	private void aleaGen() {
