@@ -89,9 +89,8 @@
                 android:weightSum="1" >
 
 
-
                 <view
-                    android:layout_width="match_parent"
+                    android:layout_width="598dp"
                     android:layout_height="wrap_content"
                     class="com.pstl.gtfo.tablature.views.TablatureView"
                     android:id="@+id/custom_view"
