@@ -1,9 +1,9 @@
 package com.pstl.gtfo.tablature.tablaturePlay;
 
-import com.pstl.gtfo.tablature.generation.Note;
-import com.pstl.gtfo.tablature.interfaces.INotePlayer;
 import com.pstl.gtfo.sound.NoteDetection;
 import com.pstl.gtfo.sound.SyntheSound;
+import com.pstl.gtfo.tablature.generation.Note;
+import com.pstl.gtfo.tablature.interfaces.INotePlayer;
 
 public class NotePlayer implements INotePlayer {
 	NoteDetection noteDetection;

@@ -4,15 +4,12 @@ import java.io.File;
 import java.util.Hashtable;
 import java.util.List;
 
-import android.util.Log;
-
 import com.pstl.gtfo.tablature.exceptions.InvalidPosException;
 import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
 import com.pstl.gtfo.tablature.interfaces.ITablatureView;
 import com.pstl.gtfo.tablature.tablature.Position;
 import com.pstl.gtfo.tablature.tablature.Tablature;
 import com.pstl.gtfo.tablature.views.TabView;
-import com.pstl.gtfo.tablature.views.TablatureView;
 
 public class TablatureGenerator implements ITablatureGenerator {
 	private ITablatureView tablatureView; //la vue de la tablature générée

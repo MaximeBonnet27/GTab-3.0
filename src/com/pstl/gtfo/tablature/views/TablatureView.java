@@ -193,6 +193,8 @@ implements ITablatureView {
 						notePlayer.playNote(note);
 					}
 				}
+				System.out
+						.println("TablatureView.setOnClickListener().new OnClickListener() {...}.onClick()");
 			}
 		});
 

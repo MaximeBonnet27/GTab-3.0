@@ -11,7 +11,6 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.pstl.gtfo.tablature.generation.Note;
 import com.pstl.gtfo.tablature.sandbox.ChordsFinder2;
 
 
@@ -127,7 +126,7 @@ public class NoteLoader {
 			tmp = ChordsFinder2.processDnC(codes);
 			System.out.println("list of lists: " + tmp);
 			System.out.println("codes = " + codes);
-			
+			if(tmp == null) System.err.println("DAMN");
 			for(int i=0;i<tmp.size();i++){
 				lengths.add(tmp.get(i).size());
 				chords.add(ChordsFinder2.belongSameChord(tmp.get(i)));

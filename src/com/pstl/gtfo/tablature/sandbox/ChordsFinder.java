@@ -2,7 +2,6 @@ package com.pstl.gtfo.tablature.sandbox;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ChordsFinder {
 	private static String[] standardChords = {"N/A","C","Dm","Em","F","G","Am"};

@@ -3,24 +3,23 @@ package com.pstl.gtfo;
 import java.io.File;
 import java.io.IOException;
 
-import com.pstl.gtfo.sound.*;
-import com.pstl.gtfo.sound.Process;
-import com.pstl.gtfo.tablature.activities.MainActivity;
-import com.pstl.gtfo.tablature.activities.TabActivity;
-
-import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.pstl.gtfo.sound.AudioPlayer;
+import com.pstl.gtfo.sound.AudioRecorder;
+import com.pstl.gtfo.sound.Process;
+import com.pstl.gtfo.tablature.activities.TabActivity;
 
 public class IHMActivity extends Activity {
 

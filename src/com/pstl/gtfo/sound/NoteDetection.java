@@ -8,7 +8,6 @@
 
 package com.pstl.gtfo.sound;
 
-import java.lang.Math;
 
 public class NoteDetection {
 	

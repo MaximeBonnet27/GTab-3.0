@@ -1,5 +1,8 @@
 package com.pstl.gtfo.tablature.activities;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -9,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -17,17 +19,13 @@ import com.pstl.gtfo.R;
 import com.pstl.gtfo.tablature.generation.TablatureGenerator;
 import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
 import com.pstl.gtfo.tablature.views.TabView;
-import com.pstl.gtfo.tablature.views.TablatureView;
-
-import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Created by Kevin Lorant on 18/02/2015.
  */
 public class TabActivity extends Activity {
     private LinearLayout containerLayout;
-    private HorizontalScrollView scrl;
+    //private HorizontalScrollView scrl;
     private Spinner tabSpin;
     ITablatureGenerator tabGen;
     private TabView tabView;
@@ -44,7 +42,7 @@ public class TabActivity extends Activity {
         setContentView(R.layout.activity_tab);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         dirFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+dir+"/");
-        scrl = (HorizontalScrollView) findViewById(R.id.scrl);
+        //scrl = (HorizontalScrollView) findViewById(R.id.scrl);
         tabSpin = (Spinner) findViewById(R.id.tabSpinner);
         tabView = (TabView)findViewById(R.id.custom_view);
         tabGen = new TablatureGenerator(dirFile, tabView);
@@ -72,6 +70,11 @@ public class TabActivity extends Activity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tabSpin.setAdapter(dataAdapter);
     }
+    public void doStuff(View v){
+    	System.out.println("TabView.enclosing_method()");
+    	
+    }
+
 
 
     private void setTabOSL(){
@@ -83,7 +86,7 @@ public class TabActivity extends Activity {
                 switch (pos) {
                     case 0:{
                         if(!isInit){
-                            ((TabView) tabView).setHeight(scrl.getHeight());
+//                            ((TabView) tabView).setHeight(scrl.getHeight());
                             isInit = true;
                             canGo = false;
                         }
@@ -91,7 +94,7 @@ public class TabActivity extends Activity {
                     }
                     default:{
                         if(!isInit){
-                            ((TabView) tabView).setHeight(scrl.getHeight());
+//                            ((TabView) tabView).setHeight(scrl.getHeight());
                             isInit = true;
                         }
 

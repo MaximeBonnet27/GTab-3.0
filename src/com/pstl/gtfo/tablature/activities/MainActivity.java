@@ -5,21 +5,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-import com.pstl.gtfo.R;
-import com.pstl.gtfo.tablature.generation.TablatureGenerator;
-import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
-import com.pstl.gtfo.tablature.interfaces.ITablatureView;
-import com.pstl.gtfo.tablature.tablature.Position;
-import com.pstl.gtfo.tablature.views.TablatureView;
-
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +20,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.pstl.gtfo.R;
+import com.pstl.gtfo.tablature.generation.TablatureGenerator;
+import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
+import com.pstl.gtfo.tablature.tablature.Position;
+import com.pstl.gtfo.tablature.views.TablatureView;
 
 public class MainActivity extends Activity {
 	//views in the layout
