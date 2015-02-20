@@ -36,7 +36,7 @@ public class TabActivity extends Activity {
     private boolean canGo = false;
     private Button go;
 
-    private HorizontalScrollView hsv;
+    private HorizontalScrollView scrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class TabActivity extends Activity {
         tabSpin = (Spinner) findViewById(R.id.tabSpinner);
         tabView = (TabView)findViewById(R.id.custom_view);
         tabGen = new TablatureGenerator(dirFile, tabView);
-		hsv = (HorizontalScrollView) findViewById(R.id.hsv);
+		scrollView = (HorizontalScrollView) findViewById(R.id.hsv);
 
         setTabSpinItem();
         setTabOSL();
@@ -73,7 +73,7 @@ public class TabActivity extends Activity {
         tabSpin.setAdapter(dataAdapter);
     }
     public void doStuff(View v){
-    	tabView.nextNote(hsv);
+    	tabView.nextNote(scrollView);
     	
     }
 

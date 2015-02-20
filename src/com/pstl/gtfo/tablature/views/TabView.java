@@ -51,8 +51,8 @@ public class TabView extends View implements ITablatureView {
 
 	private int delta_Y;
 	private int notesPerScreen = 12;
-	
-	private HorizontalScrollView hsv;
+
+	private HorizontalScrollView scrollView;
 
 
 	public TabView(Context context, AttributeSet attrs, int defStyle) {
@@ -221,7 +221,7 @@ public class TabView extends View implements ITablatureView {
 	}
 
 	public void nextNote(HorizontalScrollView hsv){
-		this.hsv = hsv;
+		this.scrollView = hsv;
 		currentNumNote = (currentNumNote + 1) % (tab.getNbPos() + 1);
 		System.out.println("CURRENT NOTE " + currentNumNote);
 		if (currentNumNote > 0) {
@@ -230,8 +230,11 @@ public class TabView extends View implements ITablatureView {
 				Log.e("notePlayer : ", note.getValue());
 				//notePlayer.playNote(note);
 			}
+		}		
+		if(currentNumNote == 0){ hsv.scrollTo(0, 0); }
+		else{
+			hsv.scrollBy(dCase, 0);
 		}
-		hsv.scrollBy(dCase, 0);
 		invalidate();
 	}
 	private void initParams() {
