@@ -49,15 +49,18 @@ public final class R {
         public static final int yin=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
-        public static final int borneButton=0x7f090011;
-        public static final int borneLayout=0x7f09000c;
-        public static final int bornetv=0x7f09000e;
-        public static final int mainLayout=0x7f09000b;
-        public static final int maxSpinner=0x7f090010;
-        public static final int minSpinner=0x7f09000f;
-        public static final int scrLayout=0x7f090013;
-        public static final int scrl=0x7f090012;
+        public static final int action_settings=0x7f090017;
+        public static final int borneButton=0x7f090014;
+        public static final int borneLayout=0x7f090010;
+        public static final int bornetv=0x7f090011;
+        public static final int custom_view=0x7f09000e;
+        public static final int hsv=0x7f09000b;
+        public static final int linearLayout=0x7f09000c;
+        public static final int mainLayout=0x7f09000f;
+        public static final int maxSpinner=0x7f090013;
+        public static final int minSpinner=0x7f090012;
+        public static final int scrLayout=0x7f090016;
+        public static final int scrl=0x7f090015;
         public static final int scrollView1=0x7f090001;
         public static final int scrollView2=0x7f090004;
         public static final int scrollView3=0x7f090007;
@@ -73,7 +76,8 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_ihm=0x7f030000;
-        public static final int activity_tablature=0x7f030001;
+        public static final int activity_tab=0x7f030001;
+        public static final int activity_tablature=0x7f030002;
     }
     public static final class menu {
         public static final int ihm=0x7f080000;
@@ -88,6 +92,7 @@ public final class R {
         public static final int borneTV=0x7f05000c;
         public static final int goButton=0x7f05000f;
         public static final int listNotes=0x7f050011;
+        public static final int mainButton=0x7f050012;
         public static final int maxPrompt=0x7f05000e;
         public static final int methGenPrompt=0x7f050010;
         public static final int minPrompt=0x7f05000d;
@@ -95,8 +100,9 @@ public final class R {
         public static final int record=0x7f050002;
         public static final int recording=0x7f050007;
         public static final int startTablature=0x7f050006;
+        public static final int textViewHint=0x7f050013;
         public static final int text_n=0x7f050005;
-        public static final int title_tablature=0x7f050012;
+        public static final int title_tablature=0x7f050014;
         public static final int yin=0x7f050004;
     }
     public static final class style {
