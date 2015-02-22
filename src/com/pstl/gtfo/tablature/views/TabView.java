@@ -51,6 +51,8 @@ public class TabView extends View implements ITablatureView {
 
 	private int delta_Y;
 	private int notesPerScreen = 12;
+	DisplayMetrics dM;
+
 
 	private HorizontalScrollView scrollView;
 
@@ -60,6 +62,7 @@ public class TabView extends View implements ITablatureView {
 		this.setWillNotDraw(false);
 		tab = new Tablature();
 		notePlayer = new NotePlayer();
+		dM = new DisplayMetrics();
 		initCanvas();
 		initParams();
 		setFocusable(true);
@@ -71,6 +74,7 @@ public class TabView extends View implements ITablatureView {
 		this.setWillNotDraw(false);
 		tab = new Tablature();
 		notePlayer = new NotePlayer();
+		dM = new DisplayMetrics();
 		initCanvas();
 		initParams();
 		setFocusable(true);
@@ -82,6 +86,7 @@ public class TabView extends View implements ITablatureView {
 		this.setWillNotDraw(false);
 		tab = new Tablature();
 		notePlayer = new NotePlayer();
+		dM = new DisplayMetrics();
 		initCanvas();
 		initParams();
 		setFocusable(true);
@@ -151,6 +156,8 @@ public class TabView extends View implements ITablatureView {
 
 			for(int i = 0; i < chords.size(); i++){
 				canvas.drawText(chords.get(i), xCour, delta_Y, caseNumPaint);
+				if(i != 0)
+					canvas.drawLine(xCour, delta_Y, xCour,  7 * delta_Y, cordePaint);
 				xCour += lengths.get(i) * dCase;
 			}
 
@@ -204,7 +211,6 @@ public class TabView extends View implements ITablatureView {
 		height = MeasureSpec.getSize(heightMeasureSpec);
 		delta_Y = height / 8;
 
-		DisplayMetrics dM = new DisplayMetrics();
 		((Activity)getContext()).getWindowManager().getDefaultDisplay().getMetrics(dM);
 		width = (int) (dM.widthPixels / dM.density);
 		dCase = width / notesPerScreen;

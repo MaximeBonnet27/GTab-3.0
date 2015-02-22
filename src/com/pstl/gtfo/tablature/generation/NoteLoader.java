@@ -95,7 +95,7 @@ public class NoteLoader {
 						dur = Double.valueOf(tab[2]);//Double.parseDouble(tab[2]);
 						//System.out.println("note = " + note + " deb = " + deb + " dur = " + deb);
 						
-						/********PROBLEME AVEC LA PREMIERE NOTE: ELLE N'EST PAS VALABLE********/
+						/********PROBLEME AVEC LA PREMIERE NOTE: ELLE N'EST PAS VALABLE********
 						if(note!=null && noteValide(note)){//&& noteValide(note) ??
 							System.out.println("fichier " + name + "StrLine deuxi�me if");
 							Log.e("parserFichier note : ", note+" "+deb+" "+dur);
@@ -107,6 +107,7 @@ public class NoteLoader {
 							System.out.println("codes = " + codes);
 							//codes.add(Integer.valueOf(1));
 						}
+						*/
                         this.addNote(note,deb,dur);
                         String namenote = note.substring(0,note.length()-1);
                         System.out.println("namenote = " + namenote);
