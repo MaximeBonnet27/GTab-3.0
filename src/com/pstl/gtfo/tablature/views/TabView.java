@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -16,7 +17,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
-import com.pstl.gtfo.R;
 import com.pstl.gtfo.tablature.generation.Note;
 import com.pstl.gtfo.tablature.generation.NoteLoader;
 import com.pstl.gtfo.tablature.generation.TablatureGenerator;
@@ -52,6 +52,7 @@ public class TabView extends View implements ITablatureView {
 	private int delta_Y;
 	private int notesPerScreen = 12;
 	DisplayMetrics dM;
+	Rect bounds;
 
 
 	private HorizontalScrollView scrollView;
@@ -66,7 +67,7 @@ public class TabView extends View implements ITablatureView {
 		initCanvas();
 		initParams();
 		setFocusable(true);
-
+		bounds = new Rect();
 	}
 
 	public TabView(Context context, AttributeSet attrs) {
@@ -78,6 +79,7 @@ public class TabView extends View implements ITablatureView {
 		initCanvas();
 		initParams();
 		setFocusable(true);
+		bounds = new Rect();
 
 	}
 
@@ -90,6 +92,7 @@ public class TabView extends View implements ITablatureView {
 		initCanvas();
 		initParams();
 		setFocusable(true);
+		bounds = new Rect();
 
 	}
 
@@ -157,7 +160,7 @@ public class TabView extends View implements ITablatureView {
 			for(int i = 0; i < chords.size(); i++){
 				canvas.drawText(chords.get(i), xCour, delta_Y, caseNumPaint);
 				if(i != 0)
-					canvas.drawLine(xCour, delta_Y, xCour,  7 * delta_Y, cordePaint);
+					canvas.drawLine(xCour, 2 * delta_Y, xCour,  7 * delta_Y, cordePaint);
 				xCour += lengths.get(i) * dCase;
 			}
 
@@ -180,6 +183,7 @@ public class TabView extends View implements ITablatureView {
 
 				p = tab.getPosition(i - 1);
 				x = x + dCase;
+				System.out.println("TabView.onDraw()" + dCase);
 				if (p.getNumCorde() == -1) {
 
 					for (int s = 0; s < Position.MAXCORDE; s++) {
@@ -187,7 +191,8 @@ public class TabView extends View implements ITablatureView {
 						canvas.drawText("S", x, y + 8, caseNumPaint);
 					}
 				} else {
-					y = y0 + delta_Y * (p.getNumCorde() + 1) - margeBas;
+					caseNumPaint.getTextBounds("" + p.getNumCase(), 0, (""+p.getNumCase()).length(), bounds);
+					y = delta_Y * (p.getNumCorde() + 1) + bounds.height() / 2;
 					canvas.drawText("" + p.getNumCase(), x, y, caseNumPaint);
 				}
 
@@ -212,8 +217,9 @@ public class TabView extends View implements ITablatureView {
 		delta_Y = height / 8;
 
 		((Activity)getContext()).getWindowManager().getDefaultDisplay().getMetrics(dM);
+		System.out.println("DMWP = " + dM.widthPixels);
 		width = (int) (dM.widthPixels / dM.density);
-		dCase = width / notesPerScreen;
+		dCase = (int) (width * dM.density / notesPerScreen);
 		this.setMeasuredDimension(dCase * tab.getNbPos(), height);
 	}
 
