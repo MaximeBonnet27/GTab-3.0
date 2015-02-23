@@ -38,6 +38,7 @@ public class TabActivity extends Activity {
     private boolean isInit = false;
     private boolean canGo = false;
     private Button go;
+    private MediaPlayer mp = new MediaPlayer();
 
     private HorizontalScrollView scrollView;
     @Override
@@ -87,7 +88,10 @@ public class TabActivity extends Activity {
                     this.getPackageName());
             System.out.println(song + " " + sound_id+" "+this.getPackageName());
             try {
-                MediaPlayer mp = MediaPlayer.create(this, sound_id);
+                if(mp!=null){
+                    mp.release();
+                }
+                mp = MediaPlayer.create(this, sound_id);
                 mp.start();
             } catch (IllegalStateException e) {
                 System.err.println("erreur lecture son1");
