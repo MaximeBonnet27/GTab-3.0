@@ -241,34 +241,17 @@ public class TabView extends View implements ITablatureView {
 		System.out.println("TabView.updateTablature() : après invalidate");
 	}
 
-	public void nextNote(HorizontalScrollView hsv){
+	public Position nextNote(HorizontalScrollView hsv){
 		this.scrollView = hsv;
+        Position p = null;
 		currentNumNote = (currentNumNote + 1) % (tab.getNbPos() + 1);
 		System.out.println("CURRENT NOTE " + currentNumNote);
 		if (currentNumNote > 0) {
 			Note note = ((TablatureGenerator) generator).getNote(currentNumNote - 1);
-            Position p = notes.get(currentNumNote);
+            p = notes.get(currentNumNote);
 			if (note != null) {
-                System.err.println(note.getValue()+" "+p.getNumCorde()+" "+p.getNumCase());
-                String song = ""+p.getNumCorde()+p.getNumCase()+".mp3";
-                int sound_id = getContext().getResources().getIdentifier(song, "raw",
-                        getContext().getPackageName());
-                System.out.println(song +" "+sound_id);
-                try {
-                    mp = MediaPlayer.create(this, sound_id);
-                    if(mp != null) {
-                        mp.stop();
-                        mp.release();
-                    }
 
-                    mp.setDataSource(song);
-                    mp.prepare();
-                   mp.start();
 
-                }
-                catch(IllegalStateException e ) {System.err.println("erreur lecture son1");  }
-                catch(IllegalArgumentException e) {System.err.println("erreur lecture son2");}
-                catch(IOException e){System.err.println("erreur lecture son3");}
                 //Log.e("notePlayer : ", note.getValue());
 				//notePlayer.playNote(note);
 			}
@@ -278,7 +261,12 @@ public class TabView extends View implements ITablatureView {
 			hsv.scrollBy(dCase, 0);
 		}
 		invalidate();
+        return p;
 	}
+
+    private Position getNotes(int i){
+        return notes.get(i);
+    }
 	private void initParams() {
 		//currentNumNote = 0;
 		initWidth();

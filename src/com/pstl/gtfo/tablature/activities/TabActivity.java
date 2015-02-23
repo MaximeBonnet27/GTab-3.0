@@ -1,10 +1,12 @@
 package com.pstl.gtfo.tablature.activities;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import com.pstl.gtfo.R;
 import com.pstl.gtfo.tablature.generation.TablatureGenerator;
 import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
+import com.pstl.gtfo.tablature.tablature.Position;
 import com.pstl.gtfo.tablature.views.TabView;
 
 /**
@@ -73,10 +76,29 @@ public class TabActivity extends Activity {
         tabSpin.setAdapter(dataAdapter);
     }
     public void doStuff(View v){
-    	tabView.nextNote(scrollView);
-    	
+    	Position p = tabView.nextNote(scrollView);
+        playSound(p);
     }
 
+    public void playSound(Position p){
+        if(p != null) {
+            String song = "s" + p.getNumCorde() + p.getNumCase();
+            int sound_id = this.getResources().getIdentifier(song, "raw",
+                    this.getPackageName());
+            System.out.println(song + " " + sound_id+" "+this.getPackageName());
+            try {
+                MediaPlayer mp = MediaPlayer.create(this, sound_id);
+                mp.start();
+            } catch (IllegalStateException e) {
+                System.err.println("erreur lecture son1");
+            } catch (IllegalArgumentException e) {
+                System.err.println("erreur lecture son2");
+            }
+        }
+        else {
+            System.err.println("Gros nul");
+        }
+    }
 
 
     private void setTabOSL(){
