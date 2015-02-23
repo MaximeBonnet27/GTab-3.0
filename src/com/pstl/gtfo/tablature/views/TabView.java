@@ -1,5 +1,6 @@
 package com.pstl.gtfo.tablature.views;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -54,6 +57,9 @@ public class TabView extends View implements ITablatureView {
 	DisplayMetrics dM;
 	Rect bounds;
 
+    //Son tablature
+    private ArrayList<Position> notes = new ArrayList<Position>();
+    private MediaPlayer mp= new MediaPlayer();
 
 	private HorizontalScrollView scrollView;
 
@@ -68,6 +74,8 @@ public class TabView extends View implements ITablatureView {
 		initParams();
 		setFocusable(true);
 		bounds = new Rect();
+
+
 	}
 
 	public TabView(Context context, AttributeSet attrs) {
@@ -182,6 +190,7 @@ public class TabView extends View implements ITablatureView {
 			for (int i = 1; i <= tab.getNbPos(); i++) {
 
 				p = tab.getPosition(i - 1);
+                notes.add(p);
 				x = x + dCase;
 				System.out.println("TabView.onDraw()" + dCase);
 				if (p.getNumCorde() == -1) {
@@ -238,8 +247,29 @@ public class TabView extends View implements ITablatureView {
 		System.out.println("CURRENT NOTE " + currentNumNote);
 		if (currentNumNote > 0) {
 			Note note = ((TablatureGenerator) generator).getNote(currentNumNote - 1);
+            Position p = notes.get(currentNumNote);
 			if (note != null) {
-				Log.e("notePlayer : ", note.getValue());
+                System.err.println(note.getValue()+" "+p.getNumCorde()+" "+p.getNumCase());
+                String song = ""+p.getNumCorde()+p.getNumCase()+".mp3";
+                int sound_id = getContext().getResources().getIdentifier(song, "raw",
+                        getContext().getPackageName());
+                System.out.println(song +" "+sound_id);
+                try {
+                    mp = MediaPlayer.create(this, sound_id);
+                    if(mp != null) {
+                        mp.stop();
+                        mp.release();
+                    }
+
+                    mp.setDataSource(song);
+                    mp.prepare();
+                   mp.start();
+
+                }
+                catch(IllegalStateException e ) {System.err.println("erreur lecture son1");  }
+                catch(IllegalArgumentException e) {System.err.println("erreur lecture son2");}
+                catch(IOException e){System.err.println("erreur lecture son3");}
+                //Log.e("notePlayer : ", note.getValue());
 				//notePlayer.playNote(note);
 			}
 		}		
