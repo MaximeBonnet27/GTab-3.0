@@ -8,11 +8,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.pstl.gtfo.R;
 import com.pstl.gtfo.tablature.generation.Note;
 import com.pstl.gtfo.tablature.generation.NoteLoader;
 import com.pstl.gtfo.tablature.generation.TablatureGenerator;
@@ -44,7 +46,9 @@ implements ITablatureView {
 	private int width;
 	private int height;
 
-
+    //Son tablature
+    private ArrayList<Position> notes;
+    private MediaPlayer mp = new MediaPlayer();
 
 
 	public TablatureView(Context context) {
@@ -55,6 +59,7 @@ implements ITablatureView {
 		initParams();
 		setOnClickListener();
 		notePlayer = new NotePlayer();
+
 
 	}
 
@@ -155,6 +160,7 @@ implements ITablatureView {
 			Position p ;
 			for(int i=1; i<=tablature.getNbPos(); i++){
 				p = tablature.getPosition(i-1);
+                notes.add(p);
 				x = x + dCase;
 				if(p.getNumCorde() == -1){
 					for(int s=0; s<Position.MAXCORDE; s++){
@@ -189,12 +195,21 @@ implements ITablatureView {
 				if(currentNumNote > 0){
 					Note note = ((TablatureGenerator) generator).getNote(currentNumNote - 1);
 					if(note!=null) {
-						Log.e("notePlayer : ", note.getValue());
-						notePlayer.playNote(note);
+                        Position p = notes.get(currentNumNote);
+						//Log.e("notePlayer : ", note.getValue());
+                        System.err.println(note.getValue()+" "+p.getNumCorde()+" "+p.getNumCase());
+                        String song = "raw."+p.getNumCorde()+"_"+p.getNumCase();
+                        try {
+                            mp.setDataSource(song);
+
+                            mp.start();
+                        } catch(Exception e){System.err.println("erreur lecture son");}
+						//notePlayer.playNote(note);
 					}
 				}
 				System.out
 						.println("TablatureView.setOnClickListener().new OnClickListener() {...}.onClick()");
+
 			}
 		});
 
