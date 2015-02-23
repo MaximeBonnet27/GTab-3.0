@@ -50,6 +50,26 @@
             android:clickable="true"           
             android:onClick="doStuff" />
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/tempoText"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/linearLayout"
+            android:layout_above="@+id/custom_view" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goButton"
+            android:id="@+id/gobutton"
+            android:layout_alignParentTop="true"
+            android:onClick="playWholeSong"
+            android:layout_toRightOf="@+id/tempoText"
+            android:layout_alignBottom="@+id/tempoText" />
+
         <!--
           <HorizontalScrollView
         android:id="@+id/scrl"

@@ -278,4 +278,8 @@ public class TabView extends View implements ITablatureView {
 		this.width = x0 + dCase * tab.getNbPos();
 	}
 
+    public ArrayList<Position> getNotes() {
+        return notes;
+    }
+
 }
