@@ -1,17 +1,12 @@
         package com.pstl.gtfo.tablature.activities;
 
         import java.io.File;
-        import java.io.IOException;
+        import java.text.DecimalFormat;
         import java.util.ArrayList;
-        import java.util.Timer;
-        import java.util.TimerTask;
-
         import android.app.Activity;
         import android.content.pm.ActivityInfo;
         import android.media.MediaPlayer;
-        import android.os.AsyncTask;
         import android.os.Bundle;
-        import android.os.CountDownTimer;
         import android.os.Environment;
         import android.os.Handler;
         import android.view.View;
@@ -23,7 +18,6 @@
         import android.widget.LinearLayout;
         import android.widget.Spinner;
         import android.widget.Toast;
-
         import com.pstl.gtfo.R;
         import com.pstl.gtfo.tablature.generation.TablatureGenerator;
         import com.pstl.gtfo.tablature.interfaces.ITablatureGenerator;
@@ -47,7 +41,35 @@
             private Button go;
             private EditText tempo;
             private MediaPlayer mp = new MediaPlayer();
-            private boolean pret = false;
+            private int bpm = 0;
+            private int indNote = 0;
+            private Handler hand = new Handler();
+            private Runnable task = new Runnable() {
+                @Override
+                public void run() {
+                    if (indNote == tabView.getNotes().size()-1){
+                        indNote = 0;
+                        hand.removeCallbacks(task);
+                    }
+                    else {
+                        indNote++;
+                        double d = 60.0/bpm;
+                        long tmp = Math.round(1000*d);
+                        System.out.println("DELAY "+tmp);
+                        hand.postDelayed(task, tmp);
+                    }
+                    tabView.nextNote(scrollView);
+                    playSound(tabView.getNotes().get(indNote-1));
+
+                           /* try {
+                                Thread.sleep(1000 * (60 / bpm), 1000);
+                            }catch (InterruptedException e) {
+                                System.err.println("Bug Sleep");
+                                }
+                            */
+                        }
+            };
+
             private HorizontalScrollView scrollView;
 
             @Override
@@ -95,20 +117,24 @@
             public void playWholeSong(View v) {
                 String value = tempo.getText().toString();
                 if (value != null && value.length() > 0) {
-                    int bpm = Integer.parseInt(tempo.getText().toString());
-                    System.out.println(bpm);
+                    bpm = Integer.parseInt(tempo.getText().toString());
+/*
                     for (Position p : tabView.getNotes()) {
                         tabView.nextNote(scrollView);
                         playSound(p);
 
                         try {
                             Thread.sleep(1000 * (60 / bpm), 1000);
-                        }catch (InterruptedException e) {System.err.println("Bug Sleep");}
+                        }catch (InterruptedException e) {
+                            System.err.println("Bug Sleep");
+                            Toast.makeText(this, "Bug Sleep", Toast.LENGTH_SHORT).show();}
 
                     }
                 }
                  else {
                     Toast.makeText(this, "Valeur manquante!", Toast.LENGTH_SHORT).show();
+                }*/
+                hand.postDelayed(task,bpm);
                 }
             }
 
@@ -127,12 +153,14 @@
                         mp.start();
                     } catch (IllegalStateException e) {
                         System.err.println("erreur lecture son1");
+                        Toast.makeText(this, "Bug lecture son 1", Toast.LENGTH_SHORT).show();
                     } catch (IllegalArgumentException e) {
                         System.err.println("erreur lecture son2");
+                        Toast.makeText(this, "Bug lecture son 2", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    System.err.println("Gros nul");
+                    System.err.println("Erreur p == null");
                 }
             }
 
