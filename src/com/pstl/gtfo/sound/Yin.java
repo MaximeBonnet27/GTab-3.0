@@ -92,8 +92,9 @@ public class Yin {
 	private void cumulativeMeanNormalizedDifference() {
 		int tau;
 		yinBuffer[0] = 1;
-		float som = 0;
-		for (tau = 1; tau < yinBuffer.length; tau++) {
+        yinBuffer[1]=1;
+		float som = 1;
+		for (tau = 2; tau < yinBuffer.length; tau++) {
 			som += yinBuffer[tau];
 			yinBuffer[tau] *= tau / som;
 		}
