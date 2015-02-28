@@ -8,6 +8,8 @@
 
 package com.pstl.gtfo.sound;
 
+import com.pstl.gtfo.Yin2.Yin2;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -43,8 +45,8 @@ public class Process {
 	 * Applique l'algorithme de détection de pitch sur un fichier son au format
 	 * wave et écrit dans un fichier de sortie au format texte le résultat
 	 * 
-	 * @param fileName
-	 * @param fileout
+	 * @param fileIn
+	 * @param fileOut
 	 * @throws IOException
 	 */
 	public void process(String fileIn, String fileOut) throws IOException {
@@ -84,10 +86,10 @@ public class Process {
 				+ "length : " + audioLength);*/
 
 		// Création de l'instance de Yin
-		Yin yin = Yin.getInstance(sampleRate);
+		Yin2 yin2 = Yin2.getInstance(sampleRate,2048);
 
 		// Initialisation des variables
-		bufferStepSize = yin.getBufferSize() - yin.getOverlapSize();
+		bufferStepSize = yin2.getBufferSize() - yin2.getOverlapSize();
 		bytesRead = 0;
 		note = 0;
 		bytesProcessed = 0;
@@ -96,7 +98,7 @@ public class Process {
 		noteChanged = false;
 		
 		// Création du tableau de bytes ou du buffer d'entrée
-		buffer = new byte[yin.getBufferSize() * 4];
+		buffer = new byte[yin2.getBufferSize() * 4];
 		nd = new NoteDetection();
 
 		// Ouverture et écriture du fichier de sortie
@@ -107,19 +109,19 @@ public class Process {
 		reader.seek(44);
 
 		// Lecture du buffer de bytes en entrée
-		bytesRead = reader.read(buffer, 0, yin.getBufferSize() * 4);
+		bytesRead = reader.read(buffer, 0, yin2.getBufferSize() * 4);
 
 		// Incrément du nombre de données lues dans le fichier d'entrée
 		bytesProcessed += bytesRead;
 
 		// Conversion du tableau de bytes en tableau de floats
-		toFloatArray(buffer, 0, yin.getInputBuffer(), 0, yin.getBufferSize());
+		toFloatArray(buffer, 0, yin2.getInputBuffer(), 0, yin2.getBufferSize());
 
 		// Début de lecture et écriture des buffers
 		while (bytesRead != -1) {
 			
 			// Algorithme de Yin
-			pitch = yin.getPitch();
+			pitch = yin2.getPitch(null).getPitch();
 
 			// Calcul du temps approximatif de la capture de la note
 			//time = bytesProcessed / (float) (sampleRate * frameSize / 8);
@@ -156,13 +158,13 @@ public class Process {
 			// Translate le buffer d'entrée avec l'overlapSize prédéfini dans
 			// la classe Yin
 			for (int i = 0; i < bufferStepSize; i++)
-				yin.getInputBuffer()[i] = yin.getInputBuffer()[i
-						+ yin.getOverlapSize()];
+				yin2.getInputBuffer()[i] = yin2.getInputBuffer()[i
+						+ yin2.getOverlapSize()];
 
 			// Lecture de bufferStepSize données dans le InputBuffer
-			bytesRead = reader.read(buffer, 0, yin.getOverlapSize() * 4);
+			bytesRead = reader.read(buffer, 0, yin2.getOverlapSize() * 4);
 
-			toFloatArray(buffer, 0, yin.getInputBuffer(), yin.getOverlapSize(),
+			toFloatArray(buffer, 0, yin2.getInputBuffer(), yin2.getOverlapSize(),
 					bufferStepSize);
 
 			// Incrément du nombre de données lues dans le fichier d'entrée

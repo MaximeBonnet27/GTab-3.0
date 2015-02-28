@@ -34,7 +34,7 @@ public class Yin {
 		this.sampleRate = sampleRate;
 		bufferSize = 2048;
 		overlapSize = bufferSize / 2;
-		inputBuffer = new float[bufferSize];
+        inputBuffer = new float[bufferSize];
 		yinBuffer = new float[bufferSize / 2];
 	}
 
