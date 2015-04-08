@@ -91,8 +91,10 @@ public class NoteLoader {
 						
 						
 						note = tab[0];
-						deb  = Double.valueOf(tab[1]);//Double.parseDouble(tab[1]);
-						dur = Double.valueOf(tab[2]);//Double.parseDouble(tab[2]);
+                        deb=1.0;
+                        dur=1.0;
+						//deb  = Double.valueOf(tab[1]);//Double.parseDouble(tab[1]);
+						//dur = Double.valueOf(tab[2]);//Double.parseDouble(tab[2]);
 						//System.out.println("note = " + note + " deb = " + deb + " dur = " + deb);
 						
 						/********PROBLEME AVEC LA PREMIERE NOTE: ELLE N'EST PAS VALABLE********
@@ -136,9 +138,9 @@ public class NoteLoader {
 			System.out.println("lenghts: " + lengths);
 		}
 		
-		catch(FileNotFoundException e){System.err.println("bug 1");}
-		catch (IOException io){System.err.println("bug 2");}
-		catch (ArrayIndexOutOfBoundsException io){System.err.println("bug 3");}
+		catch(FileNotFoundException e){System.err.println("bug 1");e.printStackTrace();}
+		catch (IOException io){System.err.println("bug 2"); io.printStackTrace();}
+		catch (ArrayIndexOutOfBoundsException io){System.err.println("bug 3"); io.printStackTrace();}
 		Log.e("parserFichier nb erreurs : ", ""+nbErreur);
 		/*notes = new ArrayList<Note>();
 		for(int i=0; i<100; i++)
