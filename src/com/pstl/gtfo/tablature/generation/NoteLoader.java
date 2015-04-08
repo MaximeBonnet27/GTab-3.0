@@ -6,11 +6,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
 
+import com.pstl.gtfo.sound.NoteDetection;
+import com.pstl.gtfo.tablature.ChordsFinder.Accord;
+import com.pstl.gtfo.tablature.ChordsFinder.Algorithm;
 import com.pstl.gtfo.tablature.sandbox.ChordsFinder2;
 
 
@@ -75,7 +79,7 @@ public class NoteLoader {
 			String strLine;
 		
 			//int i = 0;
-		   
+            NoteDetection nd = new NoteDetection();
 			while((strLine=buf.readLine())!=null){
 				System.out.println("fichier " + name +"StrLine = " + strLine);
 				String note;
@@ -85,12 +89,13 @@ public class NoteLoader {
 				tab=strLine.split("/");
                 System.out.println(tab.length);
 
-				if(tab[0]!=null &&tab[1]!=null && tab[2]!=null){
+				if(tab[0]!=null){
 					System.out.println("fichier " + name + "StrLine premier if");
 					try{
 						
 						
-						note = tab[0];
+						note = nd.noteAToString(nd.frequencyToNote(Float.parseFloat(tab[0])));
+                        System.out.println(note);
                         deb=1.0;
                         dur=1.0;
 						//deb  = Double.valueOf(tab[1]);//Double.parseDouble(tab[1]);
@@ -124,9 +129,17 @@ public class NoteLoader {
 				}
 			}
 			buf.close();
+
 			System.out.println("apr�s boucle: ");
 			List<List<Integer>> tmp = new ArrayList<List<Integer>>();
-			tmp = ChordsFinder2.processDnC(codes);
+
+            Algorithm algo = new Algorithm();
+            ArrayList<Accord> resAlgo = algo.computeInteger(codes);
+            for(Accord a: resAlgo){
+                chords.add(a.toString());
+                lengths.add(1);
+            }
+			/*tmp = ChordsFinder2.processDnC(codes);
 			System.out.println("list of lists: " + tmp);
 			System.out.println("codes = " + codes);
 			if(tmp == null) System.err.println("DAMN");
@@ -136,7 +149,8 @@ public class NoteLoader {
 			}
 			System.out.println("chords" + chords);
 			System.out.println("lenghts: " + lengths);
-		}
+		*/
+        }
 		
 		catch(FileNotFoundException e){System.err.println("bug 1");e.printStackTrace();}
 		catch (IOException io){System.err.println("bug 2"); io.printStackTrace();}
