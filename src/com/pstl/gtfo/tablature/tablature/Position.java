@@ -42,4 +42,8 @@ public class Position{
 				|| (cde == -1 || cse == -1));
 	}
 
+    public String toString(){
+        return "("+numCorde+","+numCase+")";
+    }
+
 }

@@ -78,7 +78,7 @@ public class NoteLoader {
 			buf = new BufferedReader(new FileReader(new File(pathFile, name)));
 			String strLine;
 		
-			//int i = 0;
+			double i = 0.0;
             NoteDetection nd = new NoteDetection();
 			while((strLine=buf.readLine())!=null){
 				System.out.println("fichier " + name +"StrLine = " + strLine);
@@ -95,8 +95,9 @@ public class NoteLoader {
 						
 						
 						note = nd.noteAToString(nd.frequencyToNote(Float.parseFloat(tab[0])));
-                        System.out.println(note);
-                        deb=1.0;
+                        System.out.println("Note trouvée dans NoteLoader : " + note);
+                        deb=(i%4)+1.0;
+                        i++;
                         dur=1.0;
 						//deb  = Double.valueOf(tab[1]);//Double.parseDouble(tab[1]);
 						//dur = Double.valueOf(tab[2]);//Double.parseDouble(tab[2]);

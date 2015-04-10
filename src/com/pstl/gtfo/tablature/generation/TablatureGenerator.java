@@ -111,6 +111,7 @@ public class TablatureGenerator implements ITablatureGenerator {
 	
 	
 	private Position randPos(String note){
+        System.out.println("Note randPos " + note);
 		LPosition ps = getLPosition(note);
 		return ps.getPos((int)(Math.random()*ps.getNbPos()));
 	}
@@ -150,14 +151,21 @@ public class TablatureGenerator implements ITablatureGenerator {
 		case 1: case 2:{
            //ICI LA LISTE EST NULLE, note = 60
                 System.err.println(note);
+
 			liste = notesPos.get(note);
+                System.out.println("La liste que je veux voir c'est ca : " + liste);
 			if(liste == null) liste = new LPosition();
 			break;
 		}
 		case 3:{
 
 			LPosition ltemp = notesPos.get(""+note.charAt(0)+note.charAt(2));
-			if(ltemp!=null){
+            System.out.println("CHARAT 0 " + note.charAt(0));
+            System.out.println("CHARAT 2 " + note.charAt(2));
+            System.out.println("La liste que je veux voir c'est ca 2 : " + ltemp);
+
+
+            if(ltemp!=null){
 				try{
 					Position p;
 					if(note.charAt(1) == '#'){
@@ -198,94 +206,95 @@ public class TablatureGenerator implements ITablatureGenerator {
 			notesPos.put("-1", new LPosition());
 			notesPos.get("-1").add(new Position(-1, -1));
 			/*coords du A3*/
-			notesPos.put("A3", new LPosition());
-			notesPos.get("A3").add(new Position(5, 0));
-			notesPos.get("A3").add(new Position(6, 5));
+			notesPos.put("A2", new LPosition());
+			notesPos.get("A2").add(new Position(5, 0));
+			notesPos.get("A2").add(new Position(6, 5));
 			/*coords du A4*/
-			notesPos.put("A4", new LPosition());
-			notesPos.get("A4").add(new Position(3, 2)); 
-			notesPos.get("A4").add(new Position(4, 7)); 
-			notesPos.get("A4").add(new Position(5, 12));
+			notesPos.put("A3", new LPosition());
+			notesPos.get("A3").add(new Position(3, 2));
+			notesPos.get("A3").add(new Position(4, 7));
+			notesPos.get("A3").add(new Position(5, 12));
 			/*coords du A5*/
-			notesPos.put("A5", new LPosition());
-			notesPos.get("A5").add(new Position(1, 5)); 
-			notesPos.get("A5").add(new Position(2, 10));
+			notesPos.put("A4", new LPosition());
+			notesPos.get("A4").add(new Position(1, 5));
+			notesPos.get("A4").add(new Position(2, 10));
 			/*coords du B3*/
-			notesPos.put("B3", new LPosition());
-			notesPos.get("B3").add(new Position(5, 2)); 
-			notesPos.get("B3").add(new Position(6, 7));
+			notesPos.put("B2", new LPosition());
+			notesPos.get("B2").add(new Position(5, 2));
+			notesPos.get("B2").add(new Position(6, 7));
 			/*coords du B4*/
-			notesPos.put("B4", new LPosition());
-			notesPos.get("B4").add(new Position(2, 0)); 
-			notesPos.get("B4").add(new Position(3, 4));
-			notesPos.get("B4").add(new Position(4, 9));
+			notesPos.put("B3", new LPosition());
+			notesPos.get("B3").add(new Position(2, 0));
+			notesPos.get("B3").add(new Position(3, 4));
+			notesPos.get("B3").add(new Position(4, 9));
 			/*coords du B5*/
-			notesPos.put("B5", new LPosition());
-			notesPos.get("B5").add(new Position(1, 7)); 
-			notesPos.get("B5").add(new Position(2, 12));
+			notesPos.put("B4", new LPosition());
+			notesPos.get("B4").add(new Position(1, 7));
+			notesPos.get("B4").add(new Position(2, 12));
 			/*coords du C4*/
-			notesPos.put("C4", new LPosition());
-			notesPos.get("C4").add(new Position(5, 3)); 
-			notesPos.get("C4").add(new Position(6, 8));
+			notesPos.put("C3", new LPosition());
+			notesPos.get("C3").add(new Position(5, 3));
+			notesPos.get("C3").add(new Position(6, 8));
 			/*coords du C5*/
-			notesPos.put("C5", new LPosition());
-			notesPos.get("C5").add(new Position(2, 1)); 
-			notesPos.get("C5").add(new Position(3, 5)); 
-			notesPos.get("C5").add(new Position(4, 10));
+			notesPos.put("C4", new LPosition());
+			notesPos.get("C4").add(new Position(2, 1));
+			notesPos.get("C4").add(new Position(3, 5));
+			notesPos.get("C4").add(new Position(4, 10));
 			/*coords du D4*/
-			notesPos.put("D4", new LPosition());
-			notesPos.get("D4").add(new Position(4, 0)); 
-			notesPos.get("D4").add(new Position(5, 5)); 
-			notesPos.get("D4").add(new Position(6, 10));
+			notesPos.put("D3", new LPosition());
+			notesPos.get("D3").add(new Position(4, 0));
+			notesPos.get("D3").add(new Position(5, 5));
+			notesPos.get("D3").add(new Position(6, 10));
 			/*coords du D5*/
-			notesPos.put("D5", new LPosition());
-			notesPos.get("D5").add(new Position(2, 3)); 
-			notesPos.get("D5").add(new Position(3, 7)); 
-			notesPos.get("D5").add(new Position(4, 12));
+			notesPos.put("D4", new LPosition());
+			notesPos.get("D4").add(new Position(2, 3));
+			notesPos.get("D4").add(new Position(3, 7));
+			notesPos.get("D4").add(new Position(4, 12));
 			/*coords du D6*/
-			notesPos.put("D6", new LPosition());
-			notesPos.get("D6").add(new Position(1, 10));
+			notesPos.put("D5", new LPosition());
+			notesPos.get("D5").add(new Position(1, 10));
 			/*coords du E3*/
-			notesPos.put("E3", new LPosition());
-			notesPos.get("E3").add(new Position(6, 0));
+			notesPos.put("E2", new LPosition());
+			notesPos.get("E2").add(new Position(6, 0));
 			/*coords du E4*/
-			notesPos.put("E4", new LPosition());
-			notesPos.get("E4").add(new Position(4, 2));
-			notesPos.get("E4").add(new Position(5, 7)); 
-			notesPos.get("E4").add(new Position(6, 12));
+			notesPos.put("E3", new LPosition());
+			notesPos.get("E3").add(new Position(4, 2));
+			notesPos.get("E3").add(new Position(5, 7));
+			notesPos.get("E3").add(new Position(6, 12));
 			/*coords du E5*/
-			notesPos.put("E5", new LPosition());
-			notesPos.get("E5").add(new Position(1, 0)); 
-			notesPos.get("E5").add(new Position(2, 5)); 
-			notesPos.get("E5").add(new Position(3, 9));
+			notesPos.put("E4", new LPosition());
+			notesPos.get("E4").add(new Position(1, 0));
+			notesPos.get("E4").add(new Position(2, 5));
+			notesPos.get("E4").add(new Position(3, 9));
 			/*coords du E6*/
-			notesPos.put("E6", new LPosition());
-			notesPos.get("E6").add(new Position(1, 12));
+			notesPos.put("E5", new LPosition());
+			notesPos.get("E5").add(new Position(1, 12));
 			/*coords du F3*/
-			notesPos.put("F3", new LPosition());
-			notesPos.get("F3").add(new Position(6, 1));
+			notesPos.put("F2", new LPosition());
+			notesPos.get("F2").add(new Position(6, 1));
 			/*coords du F4*/
-			notesPos.put("F4", new LPosition());
-			notesPos.get("F4").add(new Position(4, 3)); 
-			notesPos.get("F4").add(new Position(5, 8));
+			notesPos.put("F3", new LPosition());
+			notesPos.get("F3").add(new Position(4, 3));
+			notesPos.get("F3").add(new Position(5, 8));
 			/*coords du F5*/
-			notesPos.put("F5", new LPosition());
-			notesPos.get("F5").add(new Position(1, 1));
-			notesPos.get("F5").add(new Position(2, 6)); 
-			notesPos.get("F5").add(new Position(3, 10));
+			notesPos.put("F4", new LPosition());
+			notesPos.get("F4").add(new Position(1, 1));
+			notesPos.get("F4").add(new Position(2, 6));
+			notesPos.get("F4").add(new Position(3, 10));
+
 			/*coords du G3*/
-			notesPos.put("G3", new LPosition());
-			notesPos.get("G3").add(new Position(6, 3));
+			notesPos.put("G2", new LPosition());
+			notesPos.get("G2").add(new Position(6, 3));
 			/*coords du G4*/
-			notesPos.put("G4", new LPosition());
-			notesPos.get("G4").add(new Position(3, 0));
-			notesPos.get("G4").add(new Position(4, 5)); 
-			notesPos.get("G4").add(new Position(5, 10));
+			notesPos.put("G3", new LPosition());
+			notesPos.get("G3").add(new Position(3, 0));
+			notesPos.get("G3").add(new Position(4, 5));
+			notesPos.get("G3").add(new Position(5, 10));
 			/*coords du G5*/
-			notesPos.put("G5", new LPosition());
-			notesPos.get("G5").add(new Position(1, 3));
-			notesPos.get("G5").add(new Position(2, 8)); 
-			notesPos.get("G5").add(new Position(3, 12));
+			notesPos.put("G4", new LPosition());
+			notesPos.get("G4").add(new Position(1, 3));
+			notesPos.get("G4").add(new Position(2, 8));
+			notesPos.get("G4").add(new Position(3, 12));
 		}catch(InvalidPosException e){
 			//To complete
 		}

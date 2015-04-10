@@ -1,0 +1,4 @@
+Descriptions des classes servant à la reconnaissance :
+Filtrage.java : Permet de trier et séparer les fréquences enregistrées.
+
+Bibliothèque utilisée pour Yin : TarsosDSP.

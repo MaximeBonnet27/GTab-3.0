@@ -24,4 +24,13 @@ public class LPosition {
 	public int getNbPos(){
 		return positions.size();
 	}
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("LISTE POSITION : ");
+        for(Position p : positions){
+            sb.append(p + " ");
+        }
+        return sb.toString();
+    }
 }
