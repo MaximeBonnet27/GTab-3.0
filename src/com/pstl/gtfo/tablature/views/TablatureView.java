@@ -190,7 +190,6 @@ implements ITablatureView {
 
 			@Override
 			public void onClick(View v) {
-				currentNumNote = (currentNumNote + 1 ) % (tablature.getNbPos() + 1);
 				v.invalidate();
 				if(currentNumNote > 0){
 					Note note = ((TablatureGenerator) generator).getNote(currentNumNote - 1);
@@ -209,7 +208,7 @@ implements ITablatureView {
 				}
 				System.out
 						.println("TablatureView.setOnClickListener().new OnClickListener() {...}.onClick()");
-
+				currentNumNote = (currentNumNote + 1 ) % (tablature.getNbPos() + 1);
 			}
 		});
 

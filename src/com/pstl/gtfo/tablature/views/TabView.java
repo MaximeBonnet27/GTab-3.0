@@ -46,7 +46,7 @@ public class TabView extends View implements ITablatureView {
 	private int y0 = 40;
 	private int margeBas = 30;
 	private int margeWidth = 100;
-	private int currentNumNote;
+	private int currentNumNote = -1;
 	private Paint cordePaint;
 	private Paint readerPaint;
 	private Paint cordeSupportPaint;
@@ -163,7 +163,7 @@ public class TabView extends View implements ITablatureView {
 			lengths = n.getLengths();
 			//System.out.println("lengths in TablatureView: " + lengths);
 			// System.out.println("chords in TablatureView: " + chords);
-			int xCour = 70;
+			int xCour = x0;
 
 			for(int i = 0; i < chords.size(); i++){
 				canvas.drawText(chords.get(i), xCour, delta_Y, caseNumPaint);
@@ -185,7 +185,7 @@ public class TabView extends View implements ITablatureView {
 			 * */
 
 			//dessin des positions (numero des cases)
-			int x = x0, y;
+			int x = x0 - dCase, y;
 			Position p;
 			for (int i = 1; i <= tab.getNbPos(); i++) {
 
@@ -207,7 +207,7 @@ public class TabView extends View implements ITablatureView {
 
 			}
 			//dessin de la barre de lecture
-			int xL = x0 + currentNumNote * dCase;
+			int xL = x0 + currentNumNote * dCase + 20;
 			int yL = y0 + (Position.MAXCORDE - 1) * dCorde;
 			canvas.drawLine(xL, y0, xL, yL, readerPaint);
 			//if(currentNumNote == 0) this.setScrollX(0);
@@ -244,7 +244,7 @@ public class TabView extends View implements ITablatureView {
 	public Position nextNote(HorizontalScrollView hsv){
 		this.scrollView = hsv;
         Position p = null;
-		currentNumNote = (currentNumNote + 1) % (tab.getNbPos() + 1);
+		currentNumNote = (currentNumNote + 1) % (tab.getNbPos());
 		System.out.println("CURRENT NOTE " + currentNumNote);
 		if (currentNumNote > 0) {
 			Note note = ((TablatureGenerator) generator).getNote(currentNumNote - 1);
@@ -256,7 +256,11 @@ public class TabView extends View implements ITablatureView {
 				//notePlayer.playNote(note);
 			}
 		}		
-		if(currentNumNote == 0){ hsv.scrollTo(0, 0); }
+		if(currentNumNote == 0){ 
+            p = notes.get(tab.getNbPos());
+
+			hsv.scrollTo(0, 0); 
+			}
 		else{
 			hsv.scrollBy(dCase, 0);
 		}
