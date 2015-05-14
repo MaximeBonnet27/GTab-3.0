@@ -71,8 +71,8 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_ihm);
             record = (ImageButton) findViewById(R.id.startRecord);
-            play = (ImageButton) findViewById(R.id.startPlay);
-            yin = (ImageButton) findViewById(R.id.startYin);
+         //   play = (ImageButton) findViewById(R.id.startPlay);
+           // yin = (ImageButton) findViewById(R.id.startYin);
             tablature = (ImageButton)findViewById(R.id.startTablature);
             text = (EditText) findViewById(R.id.status_text);
             console = (TextView) findViewById(R.id.textView);
@@ -132,8 +132,8 @@
                                                 int which) {
                                             dialog.cancel();// if yes, then do as a
                                                             // normal record
-                                            play.setEnabled(false);
-                                            yin.setEnabled(false);
+                                           // play.setEnabled(false);
+                                           // yin.setEnabled(false);
                                             text.setEnabled(false);
                                             record.setBackgroundResource(R.drawable.utilities_closemic);
                                             audio.setOutputFile(mFileIn);
@@ -160,8 +160,8 @@
                                             dialog.cancel();// if no, then abort the
                                                             // recording.
                                             record.setBackgroundResource(R.drawable.oldmic);
-                                            play.setEnabled(true);
-                                            yin.setEnabled(true);
+                                           // play.setEnabled(true);
+                                          //  yin.setEnabled(true);
                                             text.setEnabled(true);
                                             isRecording = !isRecording;
                                         }
@@ -184,8 +184,8 @@
                     new Thread(dispatcher,"AudioDispatcher").start();
                     //console.setText("Enregistrement switch on\n"
                     //		+ console.getText());
-                    play.setEnabled(false);
-                    yin.setEnabled(false);
+//                    play.setEnabled(false);
+                //    yin.setEnabled(false);
                     text.setEnabled(false);
                 }
             } else {
@@ -203,7 +203,7 @@
                 FileWriter fwo2 = null;
                 try {
                     //fwo2 = new FileWriter(path+"/FilteredTest.txt");
-                    fwo2 = new FileWriter(path+"/"+text.getText().toString() + ".txt");
+                    fwo2 = new FileWriter(path+"/"+text.getText().toString() + "Filtre.txt");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -227,14 +227,14 @@
                 }
                 //console.setText("Enregistrement terminé\n" + console.getText());
                 record.setBackgroundResource(R.drawable.oldmic);
-                play.setEnabled(true);
-                yin.setEnabled(true);
+             //   play.setEnabled(true);
+              //  yin.setEnabled(true);
                 text.setEnabled(true);
             }
             isRecording = !isRecording;
         }
 
-        public void onPlay(View v) {
+       /* public void onPlay(View v) {
             if (isPlaying) {
                 mFileIn = path + "/" + text.getText().toString() + ".wav";
 
@@ -311,7 +311,7 @@
                                          startActivity(intent);
                                         //dialog.cancel();// a enlever
                                     }
-                                }).setNegativeButton("No", null).show();*/
+                                }).setNegativeButton("No", null).show();
             } else {
                 new AlertDialog.Builder(this)
                         .setTitle("Be careful !")
@@ -324,7 +324,7 @@
             yin.setEnabled(true);
             text.setEnabled(true);
             onTablature(v);
-        }
+        }*/
 
         public void onTablature(View v) {
             Intent intent = new Intent(IHMActivity.this, TabActivity.class);

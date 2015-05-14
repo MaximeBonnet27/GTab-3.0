@@ -18,7 +18,7 @@ public class Filtrage {
         ArrayList<String> result = new ArrayList<String>();
         boolean danslebuffer = false; //Sers à savoir si on est entre deux silences.
         for(String s:l){
-
+            System.out.println(s);
             if(!s.contains("-1.0")){ //Si ce n'est pas un silence
                 danslebuffer = true;
                 buffer.add(s);

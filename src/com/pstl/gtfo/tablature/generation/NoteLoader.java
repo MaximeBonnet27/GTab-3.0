@@ -138,7 +138,7 @@ public class NoteLoader {
             ArrayList<Accord> resAlgo = algo.computeInteger(codes);
             for(Accord a: resAlgo){
                 chords.add(a.toString());
-                lengths.add(1);
+                lengths.add(4);
             }
 			/*tmp = ChordsFinder2.processDnC(codes);
 			System.out.println("list of lists: " + tmp);

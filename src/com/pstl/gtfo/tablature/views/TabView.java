@@ -168,7 +168,7 @@ public class TabView extends View implements ITablatureView {
 			for(int i = 0; i < chords.size(); i++){
 				canvas.drawText(chords.get(i), xCour, delta_Y, caseNumPaint);
 				if(i != 0)
-					canvas.drawLine(xCour, 2 * delta_Y, xCour,  7 * delta_Y, cordePaint);
+                    canvas.drawLine(xCour, 2 * delta_Y, xCour,  7 * delta_Y, cordePaint);
 				xCour += lengths.get(i) * dCase;
 			}
 

@@ -53,15 +53,9 @@
          android:id="@+id/scrollView2"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_below="@+id/startPlay"
-         android:layout_centerHorizontal="true" >
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/startRecord">
 
-        <TextView
-             android:id="@+id/textView2"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/Lecture"
-             android:textColor="#ffffff" />
      </ScrollView>
      
      <!-- texte:  Enregistrer    OK-->
@@ -106,37 +100,25 @@
          android:layout_height="50dip"
          android:layout_alignLeft="@+id/scrollView1"
          android:layout_alignRight="@+id/scrollView1"
-         android:layout_below="@+id/startPlay"
          android:layout_marginTop="47dp"
          android:background="@drawable/tablature"
          android:contentDescription="@string/startTablature"
-         android:onClick="onTablature" />
+         android:onClick="onTablature"
+         android:layout_below="@+id/startRecord" />
 
-     <ImageButton
-         android:id="@+id/startPlay"
-         android:layout_width="70dip"
-         android:layout_height="50dip"
-         android:layout_alignLeft="@+id/scrollView1"
-         android:layout_alignRight="@+id/startTablature"
-         android:layout_below="@+id/startRecord"
-         android:layout_marginTop="48dp"
-         android:background="@drawable/videoplay"
-         android:contentDescription="@string/play"
-         android:onClick="onPlay" />
-
-     <ImageButton
+    <ImageButton
          android:id="@+id/startRecord"
          android:layout_width="70dip"
          android:layout_height="50dip"
-         android:layout_alignLeft="@+id/startPlay"
-         android:layout_alignRight="@+id/startPlay"
          android:layout_below="@+id/status_text"
          android:layout_marginTop="18dp"
          android:background="@drawable/oldmic"
          android:contentDescription="@string/record"
-         android:onClick="onRecord" />
+         android:onClick="onRecord"
+         android:layout_alignLeft="@+id/scrollView1"
+         android:layout_alignRight="@+id/startTablature" />
 
-     <ImageButton
+    <!-- <ImageButton
          android:id="@+id/startYin"
          android:layout_width="50dip"
          android:layout_height="50dip"
@@ -148,5 +130,5 @@
          android:contentDescription="@string/yin"
          android:onClick="onYin"
          android:scaleType="center" />
-
+-->
 </RelativeLayout>
